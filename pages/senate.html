@@ -2,20 +2,21 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>House</title>
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <script src="../assets/JQuery/jquery.js"></script>
-    <script src="../assets/js/popper.min.js"></script>
-    <script src="../assets/js/bootstrap.min.js"></script>
-    <link rel="icon" href="../assets/image/image02v2.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>House</title>
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+  <script src="../assets/JQuery/jquery.js"></script>
+  <script src="../assets/js/popper.min.js"></script>
+  <script src="../assets/js/bootstrap.min.js"></script>
+  <link rel="icon" href="../assets/image/image02v2.png">
 </head>
+
 <body>
-    <div class="container">
-        <nav class="navbar navbar-light bg-light">
-            <a class="navbar-brand" href="#">
-              <img src="../assets/image/image02v2.png" width="30" height="30" alt="" loading="lazy">
+  <div class="container">
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img src="../assets/image/image02v2.png" width="30" height="30" alt="" loading="lazy">
       </a>
     </nav>
     <div class="row">
@@ -48,37 +49,41 @@
             </nav>
           </div>
         </div>
+        <div class=col-2>
+          <!--<a href="mailto:ingo@tgif.net">ingo@tgif.net</a>-->
+          <a href="mailto:ingo@tgif.net" class="badge badge-info">ingo@tgif.net</a>
+        </div>
+        <div>
+          <h2>Senators</h2>
+          <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S.
+            Constitution. Each state is represented by two senators, regardless of population, who serve staggered
+            six-year
+            terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as
+            a
+            precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries,
+            federal
+            judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other
+            federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Full Name</th>
+                <th>Party</th>
+                <th>State</th>
+                <th>Years in Office</th>
+                <th>Votes with party pct</th>
+              </tr>
+            </thead>
+            <tbody id="tblSenate"></tbody>
+          </table>
+        </div>
+        <div class="card text-center">
+          <div class="card-body">
+            <p class="card-text"> © 2020 | All Rights Reserved</p>
+          </div>
+        </div>
       </div>
-      <div class=col-2><a href="mailto:ingo@tgif.net">ingo@tgif.net</a></div>
-    </div>
-    <div>
-      <h2>Senators</h2>
-      <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S.
-        Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year
-        terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a
-        precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal
-        judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other
-        federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Full Name</th>
-            <th>Party</th>
-            <th>State</th>
-            <th>Years in Office</th>
-            <th>Votes with party pct</th>
-          </tr>
-        </thead>
-        <tbody id="tblSenate"></tbody>
-      </table>
-    </div>
-    <div class="card text-center">
-      <div class="card-body">
-        <p class="card-text"> © 2020 | All Rights Reserved</p>
-      </div>
-    </div>
-  </div>
-  <script src="../assets/js/senate.js"></script>
+      <script src="../assets/js/senate.js"></script>
 </body>
 
 </html>
