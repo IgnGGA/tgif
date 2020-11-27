@@ -1,0 +1,14 @@
+p{
+    text-align: justify;
+}
+#email a{
+    background: #0069d9;
+}
+#email p{
+    font-size: 10px;
+    padding-left: 6px;
+}
+#email a:hover{
+    background: rgba(196, 54, 19, 0.865);
+    transition: 0.3s;
+}
