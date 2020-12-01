@@ -16,7 +16,7 @@ $.ajax({
           </tr>
           `
     }
-})//Cierra el done
+})
 
 $.ajax({
     type: "GET",
@@ -100,4 +100,22 @@ text.addEventListener("click", function () {
     } else {
         text.innerHTML = "Read More";
     }
+})
+
+/*
+function punto6(){
+    var imprimir=numero.filter(function(item, index, array)
+    {
+    return array.indexOf(item)===index;
+    })
+    console.log(imprimir);
+}punto6(numero);
+*/
+$.ajax({
+    type: "GET",
+    dataType: "text",
+    url: "../assets/json/house.json",
+}).done(function (atenment) {
+    var congress = JSON.parse(atenment);
+    for (var )
 })

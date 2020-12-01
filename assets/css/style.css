@@ -13,5 +13,5 @@
     transition: 0.3s;
 }
 #table2 td:nth-child(2),td:nth-child(3){
-
+   text-align: center;
 }
