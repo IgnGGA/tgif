@@ -97,10 +97,10 @@ $.ajax({
     var contR = 0;
     var contD = 0;
     var contID = 0;
-    var array=[];
-    var array2=[];
+    var array = [];
+    var array2 = [];
     var i = 0;
-    var j= 0;
+    var j = 0;
     for (var miembro of congress.results[0].members) {
         if (miembro.party == "R") {
             contR += 1;
@@ -109,22 +109,24 @@ $.ajax({
         } else if (miembro.party == "ID") {
             contID += 1;
         }
-       
-         array[i]={porcentaje : miembro.missed_votes_pct,
-                    nombre:miembro.first_name,
-                    votos:miembro.missed_votes};         
-                    i++;
-                    
+
+        array[i] = {
+            porcentaje: miembro.missed_votes_pct,
+            nombre: miembro.first_name,
+            votos: miembro.missed_votes
+        };
+        i++;
+
     }
-    
+
     function ordenarAsc(array, n) {
         array.sort(function (a, b) {
-           return a.porcentaje - b.porcentaje;
+            return a.porcentaje - b.porcentaje;
         });
-     }
-    
-     ordenarAsc(array, "porcentaje");
-console.table(array);
+    }
+
+    ordenarAsc(array, "porcentaje");
+    console.table(array);
 
     total = contR + contD + contID
     t1f11.innerHTML = contR;
