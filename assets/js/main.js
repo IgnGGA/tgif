@@ -113,6 +113,7 @@ $.ajax({
         array[i] = {
             porcentaje: miembro.missed_votes_pct,
             nombre: miembro.first_name,
+            url: miembro.url,
             votos: miembro.missed_votes
         };
         i++;
@@ -126,8 +127,32 @@ $.ajax({
     }
 
     ordenarAsc(array, "porcentaje");
-    console.table(array);
+    //console.table(array);
 
+    var tablaLast = document.getElementById("ast1");
+    for (var t = (array.length - 1); t >= (array.length-4);t--) {
+        //              449                  449-4=446      restadeauno
+    
+    tablaLast.innerHTML += `
+            <tr>
+            <td><a href="${array[t].url}">${array[t].nombre} </a></td>
+            <td>${array[t].votos}</td>
+            <td>${array[t].porcentaje} %</td>
+            </tr>
+            `
+        }
+        var tablaMost = document.getElementById("ast2");
+        for (var t = 0; t < 4;t++) {
+            //              449                  449-4=446      restadeauno
+        
+        tablaMost.innerHTML += `
+                <tr>
+                <td><a href="${array[t].url}">${array[t].nombre} </a></td>
+                <td>${array[t].votos}</td>
+                <td>${array[t].porcentaje} %</td>
+                </tr>
+                `
+            }    
     total = contR + contD + contID
     t1f11.innerHTML = contR;
     t1f21.innerHTML = contD;
@@ -138,6 +163,20 @@ $.ajax({
     t1f32.innerHTML = (contID * 100 / total).toFixed(2) + "%";
     t1f42.innerHTML = (total * 100 / total).toFixed(2) + "%";
 
+    //llenar 2 tabla
+    /*   var tablaLast = document.getElementById("ast1");
+       for (var lasten of array[0]) {
+          console.log(lasten.nombre)
+       }
+   
+    tabla2.innerHTML += `
+               <tr>
+               <td><a href="${lasten.url}">${lasten.nombre} </a></td>
+               <td>${lasten.votos}</td>
+               <td>${lasten.porcentaje}</td>
+               </tr>
+               `
+   */
 })
     //_________________________________HOUSE______________________________________________________________________
     .fail(function (e) {
