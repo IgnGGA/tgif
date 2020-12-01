@@ -36,7 +36,7 @@ $.ajax({
     var contR = 0;
     var contD = 0;
     var contID = 0;
-    var array = [];
+    var arrayA1 = [];
     var i=0;
 
     for (var miembro of congress.results[0].members) {
@@ -48,33 +48,34 @@ $.ajax({
             contID += 1;
         }
 
-        array[i] = {
+        arrayA1[i] = {
             porcentaje: miembro.missed_votes_pct,
             nombre: miembro.first_name,
             url: miembro.url,
             votos: miembro.missed_votes
         };
         i++;
+
     }
 
-    function ordenarAsc(array, n) {
-        array.sort(function (a, b) {
+    function ordenarAsc(arrayA1, n) {
+        arrayA1.sort(function (a, b) {
             return a.porcentaje - b.porcentaje;
         });
     }
 
-    ordenarAsc(array, "porcentaje");
+    ordenarAsc(arrayA1, "porcentaje");
     //console.table(array);
 
     var tablaLast = document.getElementById("ast1");
-    for (var t = (array.length - 1); t >= (array.length-4);t--) {
+    for (var t = (arrayA1.length - 1); t >= (arrayA1.length-4);t--) {
         //              449                  449-4=446      restadeauno
     
     tablaLast.innerHTML += `
             <tr>
-            <td><a href="${array[t].url}">${array[t].nombre} </a></td>
-            <td>${array[t].votos}</td>
-            <td>${array[t].porcentaje} %</td>
+            <td><a href="${arrayA1[t].url}">${arrayA1[t].nombre} </a></td>
+            <td>${arrayA1[t].votos}</td>
+            <td>${arrayA1[t].porcentaje} %</td>
             </tr>
             `
         }
@@ -84,9 +85,9 @@ $.ajax({
         
         tablaMost.innerHTML += `
                 <tr>
-                <td><a href="${array[t].url}">${array[t].nombre} </a></td>
-                <td>${array[t].votos}</td>
-                <td>${array[t].porcentaje} %</td>
+                <td><a href="${arrayA1[t].url}">${arrayA1[t].nombre} </a></td>
+                <td>${arrayA1[t].votos}</td>
+                <td>${arrayA1[t].porcentaje} %</td>
                 </tr>
                 `
             }   
@@ -140,7 +141,7 @@ $.ajax({
     var contR = 0;
     var contD = 0;
     var contID = 0;
-    var array = [];
+    var arrayS1 = [];
     var i = 0;
 
     for (var miembro of congress.results[0].members) {
@@ -152,7 +153,7 @@ $.ajax({
             contID += 1;
         }
 
-        array[i] = {
+        arrayS1[i] = {
             porcentaje: miembro.missed_votes_pct,
             nombre: miembro.first_name,
             url: miembro.url,
@@ -161,24 +162,24 @@ $.ajax({
         i++;
     }
 
-    function ordenarAsc(array, n) {
-        array.sort(function (a, b) {
+    function ordenarAsc(arrayS1, n) {
+        arrayS1.sort(function (a, b) {
             return a.porcentaje - b.porcentaje;
         });
     }
 
-    ordenarAsc(array, "porcentaje");
+    ordenarAsc(arrayS1, "porcentaje");
     //console.table(array);
 
     var tablaLast = document.getElementById("aht1");
-    for (var t = (array.length - 1); t >= (array.length-4);t--) {
+    for (var t = (arrayS1.length - 1); t >= (arrayS1.length-4);t--) {
         //              449                  449-4=446      restadeauno
     
     tablaLast.innerHTML += `
             <tr>
-            <td><a href="${array[t].url}">${array[t].nombre} </a></td>
-            <td>${array[t].votos}</td>
-            <td>${array[t].porcentaje} %</td>
+            <td><a href="${arrayS1[t].url}">${arrayS1[t].nombre} </a></td>
+            <td>${arrayS1[t].votos}</td>
+            <td>${arrayS1[t].porcentaje} %</td>
             </tr>
             `
         }
@@ -188,9 +189,9 @@ $.ajax({
         
         tablaMost.innerHTML += `
                 <tr>
-                <td><a href="${array[t].url}">${array[t].nombre} </a></td>
-                <td>${array[t].votos}</td>
-                <td>${array[t].porcentaje} %</td>
+                <td><a href="${arrayS1[t].url}">${arrayS1[t].nombre} </a></td>
+                <td>${arrayS1[t].votos}</td>
+                <td>${arrayS1[t].porcentaje} %</td>
                 </tr>
                 `
             }    
