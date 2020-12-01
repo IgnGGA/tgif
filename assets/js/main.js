@@ -36,6 +36,8 @@ $.ajax({
     var contR = 0;
     var contD = 0;
     var contID = 0;
+    var array = [];
+    var i=0;
 
     for (var miembro of congress.results[0].members) {
         if (miembro.party == "R") {
@@ -45,8 +47,49 @@ $.ajax({
         } else if (miembro.party == "ID") {
             contID += 1;
         }
+
+        array[i] = {
+            porcentaje: miembro.missed_votes_pct,
+            nombre: miembro.first_name,
+            url: miembro.url,
+            votos: miembro.missed_votes
+        };
+        i++;
     }
 
+    function ordenarAsc(array, n) {
+        array.sort(function (a, b) {
+            return a.porcentaje - b.porcentaje;
+        });
+    }
+
+    ordenarAsc(array, "porcentaje");
+    //console.table(array);
+
+    var tablaLast = document.getElementById("ast1");
+    for (var t = (array.length - 1); t >= (array.length-4);t--) {
+        //              449                  449-4=446      restadeauno
+    
+    tablaLast.innerHTML += `
+            <tr>
+            <td><a href="${array[t].url}">${array[t].nombre} </a></td>
+            <td>${array[t].votos}</td>
+            <td>${array[t].porcentaje} %</td>
+            </tr>
+            `
+        }
+        var tablaMost = document.getElementById("ast2");
+        for (var t = 0; t < 4;t++) {
+            //              449                  449-4=446      restadeauno
+        
+        tablaMost.innerHTML += `
+                <tr>
+                <td><a href="${array[t].url}">${array[t].nombre} </a></td>
+                <td>${array[t].votos}</td>
+                <td>${array[t].porcentaje} %</td>
+                </tr>
+                `
+            }   
     total = contR + contD + contID;
     t1f11.innerHTML = contR;
     t1f21.innerHTML = contD;
@@ -98,9 +141,8 @@ $.ajax({
     var contD = 0;
     var contID = 0;
     var array = [];
-    var array2 = [];
     var i = 0;
-    var j = 0;
+
     for (var miembro of congress.results[0].members) {
         if (miembro.party == "R") {
             contR += 1;
@@ -117,7 +159,6 @@ $.ajax({
             votos: miembro.missed_votes
         };
         i++;
-
     }
 
     function ordenarAsc(array, n) {
@@ -129,7 +170,7 @@ $.ajax({
     ordenarAsc(array, "porcentaje");
     //console.table(array);
 
-    var tablaLast = document.getElementById("ast1");
+    var tablaLast = document.getElementById("aht1");
     for (var t = (array.length - 1); t >= (array.length-4);t--) {
         //              449                  449-4=446      restadeauno
     
@@ -141,7 +182,7 @@ $.ajax({
             </tr>
             `
         }
-        var tablaMost = document.getElementById("ast2");
+        var tablaMost = document.getElementById("aht2");
         for (var t = 0; t < 4;t++) {
             //              449                  449-4=446      restadeauno
         
@@ -163,20 +204,6 @@ $.ajax({
     t1f32.innerHTML = (contID * 100 / total).toFixed(2) + "%";
     t1f42.innerHTML = (total * 100 / total).toFixed(2) + "%";
 
-    //llenar 2 tabla
-    /*   var tablaLast = document.getElementById("ast1");
-       for (var lasten of array[0]) {
-          console.log(lasten.nombre)
-       }
-   
-    tabla2.innerHTML += `
-               <tr>
-               <td><a href="${lasten.url}">${lasten.nombre} </a></td>
-               <td>${lasten.votos}</td>
-               <td>${lasten.porcentaje}</td>
-               </tr>
-               `
-   */
 })
     //_________________________________HOUSE______________________________________________________________________
     .fail(function (e) {
