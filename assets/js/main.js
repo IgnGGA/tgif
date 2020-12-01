@@ -1,3 +1,4 @@
+//_________________________________SENATE____________________________________________________________________
 $.ajax({
     type: "GET",
     dataType: "text",
@@ -16,8 +17,49 @@ $.ajax({
           </tr>
           `
     }
-})//Cierra el done
+})
+$.ajax({
+    type: "GET",
+    dataType: "text",
+    url: "../assets/json/senate.json",
+}).done(function (atenmentS) {
+    var congress = JSON.parse(atenmentS);
+    var t1f11 = document.getElementById("rast1n");
+    var t1f12 = document.getElementById("rast1v");
+    var t1f21 = document.getElementById("dast1n");
+    var t1f22 = document.getElementById("dast1v");
+    var t1f31 = document.getElementById("iast1n");
+    var t1f32 = document.getElementById("iast1v");
+    var t1f41 = document.getElementById("tast1n");
+    var t1f42 = document.getElementById("tast1v");
 
+    var contR = 0;
+    var contD = 0;
+    var contID = 0;
+
+    for (var miembro of congress.results[0].members) {
+        if (miembro.party == "R") {
+            contR += 1;
+        } else if (miembro.party == "D") {
+            contD += 1;
+        } else if (miembro.party == "ID") {
+            contID += 1;
+        }
+    }
+
+    total=contR+contD+contID;
+    t1f11.innerHTML = contR;
+    t1f21.innerHTML = contD;
+    t1f31.innerHTML = contID;
+    t1f41.innerHTML = total;
+    t1f12.innerHTML = (contR*100/total).toFixed(2)+"%";
+    t1f22.innerHTML = (contD*100/total).toFixed(2)+"%";
+    t1f32.innerHTML = (contID*100/total).toFixed(2)+"%";
+    t1f42.innerHTML = (total*100/total).toFixed(2)+"%";
+
+})
+//Cierra el done
+//_________________________________HOUSE______________________________________________________________________
 $.ajax({
     type: "GET",
     dataType: "text",
@@ -36,22 +78,13 @@ $.ajax({
             </tr>
             `
     }
-   
-
-})//Cierre del done
-
-.fail(function (e) {
-    console.log(e);
 })
-
 $.ajax({
     type: "GET",
     dataType: "text",
     url: "../assets/json/house.json",
-}).done(function (atenment) {
-    var congress = JSON.parse(atenment);
-   //r=republicans;d=democrats;i=independant;t=total;a=attendance
-   //tn°=table numero; n=inicial primera columna a rellenar; v=segunda coumna a rellenar
+}).done(function (atenmentH) {
+    var congress = JSON.parse(atenmentH);
     var t1f11 = document.getElementById("raht1n");
     var t1f12 = document.getElementById("raht1v");
     var t1f21 = document.getElementById("daht1n");
@@ -80,13 +113,13 @@ $.ajax({
     t1f21.innerHTML = contD;
     t1f31.innerHTML = contID;
     t1f41.innerHTML = total;
-    t1f12.innerHTML = (contR*100/total).toFixed(2);
-    t1f22.innerHTML = (contD*100/total).toFixed(2);
-    t1f32.innerHTML = (contID*100/total).toFixed(2);
-    t1f42.innerHTML = (total*100/total).toFixed(2);
+    t1f12.innerHTML = (contR*100/total).toFixed(2)+"%";
+    t1f22.innerHTML = (contD*100/total).toFixed(2)+"%";
+    t1f32.innerHTML = (contID*100/total).toFixed(2)+"%";
+    t1f42.innerHTML = (total*100/total).toFixed(2)+"%";
     
 })
-
+//_________________________________HOUSE______________________________________________________________________
 .fail(function (e) {
     console.log(e);
 })
