@@ -47,15 +47,15 @@ $.ajax({
         }
     }
 
-    total=contR+contD+contID;
+    total = contR + contD + contID;
     t1f11.innerHTML = contR;
     t1f21.innerHTML = contD;
     t1f31.innerHTML = contID;
     t1f41.innerHTML = total;
-    t1f12.innerHTML = (contR*100/total).toFixed(2)+"%";
-    t1f22.innerHTML = (contD*100/total).toFixed(2)+"%";
-    t1f32.innerHTML = (contID*100/total).toFixed(2)+"%";
-    t1f42.innerHTML = (total*100/total).toFixed(2)+"%";
+    t1f12.innerHTML = (contR * 100 / total).toFixed(2) + "%";
+    t1f22.innerHTML = (contD * 100 / total).toFixed(2) + "%";
+    t1f32.innerHTML = (contID * 100 / total).toFixed(2) + "%";
+    t1f42.innerHTML = (total * 100 / total).toFixed(2) + "%";
 
 })
 //Cierra el done
@@ -97,7 +97,9 @@ $.ajax({
     var contR = 0;
     var contD = 0;
     var contID = 0;
-
+    var array=[];
+    var array2=[];
+    var i = 0;
     for (var miembro of congress.results[0].members) {
         if (miembro.party == "R") {
             contR += 1;
@@ -106,23 +108,29 @@ $.ajax({
         } else if (miembro.party == "ID") {
             contID += 1;
         }
+        array[i]={"Nombre": miembro.first_name,
+                    "votos": miembro.missed_votes,
+                 "porcentaje":[miembro.missed_votes_pct]};         
+        i++;
     }
+    function comparar ( a, b ){ return a - b; };
+    console.log(array[0].porcentaje.sort(comparar));
 
-    total=contR+contD+contID;
+    total = contR + contD + contID;
     t1f11.innerHTML = contR;
     t1f21.innerHTML = contD;
     t1f31.innerHTML = contID;
     t1f41.innerHTML = total;
-    t1f12.innerHTML = (contR*100/total).toFixed(2)+"%";
-    t1f22.innerHTML = (contD*100/total).toFixed(2)+"%";
-    t1f32.innerHTML = (contID*100/total).toFixed(2)+"%";
-    t1f42.innerHTML = (total*100/total).toFixed(2)+"%";
-    
+    t1f12.innerHTML = (contR * 100 / total).toFixed(2) + "%";
+    t1f22.innerHTML = (contD * 100 / total).toFixed(2) + "%";
+    t1f32.innerHTML = (contID * 100 / total).toFixed(2) + "%";
+    t1f42.innerHTML = (total * 100 / total).toFixed(2) + "%";
+
 })
-//_________________________________HOUSE______________________________________________________________________
-.fail(function (e) {
-    console.log(e);
-})
+    //_________________________________HOUSE______________________________________________________________________
+    .fail(function (e) {
+        console.log(e);
+    })
 
 var text;
 text = document.getElementById("buttonRead");
