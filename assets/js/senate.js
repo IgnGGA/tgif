@@ -1,3 +1,4 @@
+//TABLA_CONGRESS_113
 $.ajax({
     type: "GET",
     dataType: "text",
@@ -17,6 +18,7 @@ $.ajax({
           `
     }
 })
+//TABLA_HOUSE_AT_A_GLANCE;_ATTENDANCE_Y_PARTY_LOYALTY
 $.ajax({
     type: "GET",
     dataType: "text",
@@ -35,9 +37,7 @@ $.ajax({
     var contR = 0;
     var contD = 0;
     var contID = 0;
-    var arrayA1 = [];
-    var i=0;
-
+    
     for (var miembro of congress.results[0].members) {
         if (miembro.party == "R") {
             contR += 1;
@@ -46,7 +46,29 @@ $.ajax({
         } else if (miembro.party == "ID") {
             contID += 1;
         }
+    }
 
+    total = contR + contD + contID;
+    t1f11.innerHTML = contR;
+    t1f21.innerHTML = contD;
+    t1f31.innerHTML = contID;
+    t1f41.innerHTML = total;
+    t1f12.innerHTML = (contR * 100 / total).toFixed(2) + "%";
+    t1f22.innerHTML = (contD * 100 / total).toFixed(2) + "%";
+    t1f32.innerHTML = (contID * 100 / total).toFixed(2) + "%";
+    t1f42.innerHTML = (total * 100 / total).toFixed(2) + "%";
+
+})
+//TABLAS_LAST_Y_MOST_ENGAGED
+$.ajax({
+    type: "GET",
+    dataType: "text",
+    url: "../assets/json/senate.json",
+}).done(function (tabla2) {
+    var congress = JSON.parse(tabla2);
+    var arrayA1 = [];
+    var i=0;
+    for (var miembro of congress.results[0].members) {
         arrayA1[i] = {
             porcentaje: miembro.missed_votes_pct,
             nombre: miembro.first_name,
@@ -54,9 +76,7 @@ $.ajax({
             votos: miembro.missed_votes
         };
         i++;
-
     }
-
     function ordenarAsc(arrayA1, n) {
         arrayA1.sort(function (a, b) {
             return a.porcentaje - b.porcentaje;
@@ -90,16 +110,6 @@ $.ajax({
                 </tr>
                 `
             }   
-    total = contR + contD + contID;
-    t1f11.innerHTML = contR;
-    t1f21.innerHTML = contD;
-    t1f31.innerHTML = contID;
-    t1f41.innerHTML = total;
-    t1f12.innerHTML = (contR * 100 / total).toFixed(2) + "%";
-    t1f22.innerHTML = (contD * 100 / total).toFixed(2) + "%";
-    t1f32.innerHTML = (contID * 100 / total).toFixed(2) + "%";
-    t1f42.innerHTML = (total * 100 / total).toFixed(2) + "%";
-
 })
 .fail(function (e) {
     console.log(e);
