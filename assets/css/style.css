@@ -18,3 +18,13 @@ td{
 td:first-child{
     text-align: left;
 }
+#cuadro1{
+    width: 100%;
+    height: 400px;
+    overflow-y: scroll;
+}
+#cuadro2{
+    width: 100%;
+    height: 385px;
+    overflow-y: scroll;
+}
