@@ -51,19 +51,26 @@ $.ajax({
         } else if (miembro.party == "ID") {
             contID += 1;
             promID += miembro.votes_with_party_pct;
-        }1
+        }
     }
     promT=promR+promD+promID;
     total = contR + contD + contID;
+    
+    function verificar(a,b){if(isNaN(a/b)== true){
+        return 0;
+    }else{
+        return (a/b).toFixed(2);
+    }}
+
     t1f11.innerHTML = contR;
     t1f21.innerHTML = contD;
     t1f31.innerHTML = contID;
     t1f41.innerHTML = total;
-    t1f12.innerHTML = (promR/contR).toFixed(2)+"%";
-    t1f22.innerHTML = (promD/contD).toFixed(2) + "%";
-    t1f32.innerHTML = (promID/contID).toFixed(2) + "%";
-    t1f42.innerHTML = (promT/total).toFixed(2) + "%";
-
+    t1f12.innerHTML = verificar(promR,contR)+"%";
+    t1f22.innerHTML = verificar(promD,contD) + "%";
+    t1f32.innerHTML = verificar(promID,contID) + "%";
+    t1f42.innerHTML = verificar(promT,total) + "%";
+   
 })
 //TABLAS_LAST_Y_MOST_ENGAGED
 $.ajax({
@@ -90,12 +97,10 @@ $.ajax({
     }
 
     ordenarAsc(arrayS1, "porcentaje");
-    console.log(arrayS1);
 
     var tablaLast = document.getElementById("aht1");
-    for (var t = (arrayS1.length - 1); t >= (arrayS1.length-(arrayS1.length*0.1));t--) {
+    for (var t = 404; t <= 449;t++) {
         //              449                  449-4=446      restadeauno
-    
     tablaLast.innerHTML += `
             <tr>
             <td><a href="${arrayS1[t].url}">${arrayS1[t].nombre} </a></td>
@@ -104,7 +109,7 @@ $.ajax({
             </tr>
             `
         }
-    console.table(arrayS1.length-(arrayS1.length*0.1))
+    
         var tablaMost = document.getElementById("aht2");
         for (var t = 0; t < arrayS1.length*0.1;t++) {
             //              449                  449-4=446      restadeauno
@@ -143,7 +148,6 @@ $.ajax({
     }
 
     ordenarAsc(arrayA1, "porcentaje");
-    console.table(arrayA1);
 
     var tablaLast = document.getElementById("plht2");
     for (var t = (arrayA1.length - 1); t >= (arrayA1.length-(arrayA1.length*0.1));t--) {
