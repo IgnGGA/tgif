@@ -53,18 +53,23 @@ $.ajax({
             promID += miembro.votes_with_party_pct;
         }
     }
-
+    function verificar(a,b){
+        if(isNaN(a/b)==true){
+            return 0;}
+        else{
+        return (a/b).toFixed(2);
+    }
+}
     promT=promR+promD+promID;
     total = contR + contD + contID;
     t1f11.innerHTML = contR;
     t1f21.innerHTML = contD;
     t1f31.innerHTML = contID;
     t1f41.innerHTML = total;
-    t1f12.innerHTML = (promR/contR).toFixed(2)+"%";
-    t1f22.innerHTML = (promD/contD).toFixed(2) + "%";
-    t1f32.innerHTML = (promID/contID).toFixed(2) + "%";
-    t1f42.innerHTML = (promT/total).toFixed(2) + "%";
-
+    t1f12.innerHTML = verificar(promR,contR)+"%";
+    t1f22.innerHTML = verificar(promD,contD)+"%";
+    t1f32.innerHTML = verificar(promID,contID)+"%";
+    t1f42.innerHTML = verificar(promT,total)+"%";
 })
 //TABLAS_LAST_Y_MOST_ENGAGED
 $.ajax({
