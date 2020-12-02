@@ -118,6 +118,59 @@ $.ajax({
                 `
             }    
 })
+$.ajax({
+    type: "GET",
+    dataType: "text",
+    url: "../assets/json/house.json",
+}).done(function (tabla3) {
+    var congress = JSON.parse(tabla3);
+    var arrayA1 = [];
+    var i=0;
+    for (var miembro of congress.results[0].members) {
+        arrayA1[i] = {
+            porcentaje: miembro.votes_with_party_pct,
+            nombre: miembro.first_name,
+            url: miembro.url,
+            votos: miembro.total_votes,
+            votosM: miembro.missed_votes
+        };
+        i++;
+    }
+    function ordenarAsc(arrayA1, n) {
+        arrayA1.sort(function (a, b) {
+            return a.porcentaje - b.porcentaje;
+        });
+    }
+
+    ordenarAsc(arrayA1, "porcentaje");
+    console.table(arrayA1);
+
+    var tablaLast = document.getElementById("plht2");
+    for (var t = (arrayA1.length - 1); t >= (arrayA1.length-(arrayA1.length*0.1));t--) {
+        //              449                  449-4=446      restadeauno
+    var variable=(arrayA1[t].votos-arrayA1[t].votosM)*(arrayA1[t].porcentaje)/100;
+    tablaLast.innerHTML +=
+    `
+            <tr>
+            <td><a href="${arrayA1[t].url}">${arrayA1[t].nombre} </a></td>
+            <td>${variable.toFixed()}</td>
+            <td>${arrayA1[t].porcentaje} %</td>
+            </tr>
+            `
+        }
+        var tablaMost = document.getElementById("plht1");
+        for (var t = 0; t < arrayA1.length*0.1;t++) {
+            //              449                  449-4=446      restadeauno
+        var variable=(arrayA1[t].votos-arrayA1[t].votosM)*(arrayA1[t].porcentaje)/100;
+        tablaMost.innerHTML += `
+                <tr>
+                <td><a href="${arrayA1[t].url}">${arrayA1[t].nombre} </a></td>
+                <td>${variable.toFixed()}</td>
+                <td>${arrayA1[t].porcentaje} %</td>
+                </tr>
+                `
+            }   
+})
 .fail(function (e) {
     console.log(e);
 })
