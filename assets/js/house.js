@@ -91,9 +91,15 @@ $.ajax({
 
     ordenarAsc(arrayS1, "porcentaje");
     console.log(arrayS1);
-
+    var min=(arrayS1.length-(arrayS1.length*0.1)-1).toFixed(0);//es un string
+    min1=parseInt(min);//en un entero
+        console.log(min1);
+    var max=(arrayS1.length-1).toFixed();
+        console.log(max);
+    var tablaLast = document.getElementById("ast1");
     var tablaLast = document.getElementById("aht1");
-    for (var t = (arrayS1.length - 1); t >= (arrayS1.length-(arrayS1.length*0.1));t--) {
+
+    for (var t =min1; t <=max;t++) {
         //              449                  449-4=446      restadeauno
     
     tablaLast.innerHTML += `
