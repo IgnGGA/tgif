@@ -94,7 +94,7 @@ $.ajax({
     //console.table(array);
 
     var tablaLast = document.getElementById("ast1");
-    for (var t = (arrayA1.length - 1); t >= (arrayA1.length-4);t--) {
+    for (var t = (arrayA1.length - 1); t >= (arrayA1.length-(arrayA1.length*0.1));t--) {
         //              449                  449-4=446      restadeauno
     
     tablaLast.innerHTML += `
@@ -106,7 +106,7 @@ $.ajax({
             `
         }
         var tablaMost = document.getElementById("ast2");
-        for (var t = 0; t < 4;t++) {
+        for (var t = 0; t < arrayA1.length*0.1;t++) {
             //              449                  449-4=446      restadeauno
         
         tablaMost.innerHTML += `
