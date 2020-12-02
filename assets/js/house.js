@@ -68,8 +68,8 @@ $.ajax({
     var congress = JSON.parse(tabla2);
     var arrayS1 = [];
     var i = 0;
-    for (var miembro of congress.results[0].members) {
-        arrayS1[i] = {
+    for (var miembro of congress.results[0].members) {//una lista de objetos
+        arrayS1[i] = {//A=[{1,2,3},{a,b,c},{,4,5,6},{,d,e,f}]
             porcentaje: miembro.missed_votes_pct,
             nombre: miembro.first_name,
             url: miembro.url,
@@ -84,7 +84,7 @@ $.ajax({
     }
 
     ordenarAsc(arrayS1, "porcentaje");
-    //console.table(array);
+    console.log(arrayS1);
 
     var tablaLast = document.getElementById("aht1");
     for (var t = (arrayS1.length - 1); t >= (arrayS1.length-4);t--) {
