@@ -92,10 +92,9 @@ $.ajax({
 
     ordenarAsc(arrayA1, "porcentaje");
     var min=(arrayA1.length-(arrayA1.length*0.1)-1).toFixed(0);//es un string
-    min1=parseInt(min);//en un entero
-        console.log(min1);
+    min1=parseInt(min);//transforma el string min en un entero
     var max=(arrayA1.length-1).toFixed();
-        console.log(max);
+
     var tablaLast = document.getElementById("ast1"); 
     for (var t = min1; t <= max ;t++) {
     tablaLast.innerHTML += `
