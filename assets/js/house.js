@@ -37,26 +37,32 @@ $.ajax({
     var contR = 0;
     var contD = 0;
     var contID = 0;
+    var promR=0;
+    var promD=0;
+    var promID=0;
 
     for (var miembro of congress.results[0].members) {
         if (miembro.party == "R") {
             contR += 1;
+            promR += miembro.votes_with_party_pct;
         } else if (miembro.party == "D") {
             contD += 1;
+            promD += miembro.votes_with_party_pct;
         } else if (miembro.party == "ID") {
             contID += 1;
+            promID += miembro.votes_with_party_pct;
         }1
     }
-
-    total = contR + contD + contID
+    promT=promR+promD+promID;
+    total = contR + contD + contID;
     t1f11.innerHTML = contR;
     t1f21.innerHTML = contD;
     t1f31.innerHTML = contID;
     t1f41.innerHTML = total;
-    t1f12.innerHTML = (contR * 100 / total).toFixed(2) + "%";
-    t1f22.innerHTML = (contD * 100 / total).toFixed(2) + "%";
-    t1f32.innerHTML = (contID * 100 / total).toFixed(2) + "%";
-    t1f42.innerHTML = (total * 100 / total).toFixed(2) + "%";
+    t1f12.innerHTML = (promR/contR).toFixed(2)+"%";
+    t1f22.innerHTML = (promD/contD).toFixed(2) + "%";
+    t1f32.innerHTML = (promID/contID).toFixed(2) + "%";
+    t1f42.innerHTML = (promT/total).toFixed(2) + "%";
 
 })
 //TABLAS_LAST_Y_MOST_ENGAGED
@@ -73,7 +79,7 @@ $.ajax({
             porcentaje: miembro.missed_votes_pct,
             nombre: miembro.first_name,
             url: miembro.url,
-            votos: miembro.missed_votes
+            votos: miembro.missed_votes,
         };
         i++;
     }
@@ -87,7 +93,7 @@ $.ajax({
     console.log(arrayS1);
 
     var tablaLast = document.getElementById("aht1");
-    for (var t = (arrayS1.length - 1); t >= (arrayS1.length-4);t--) {
+    for (var t = (arrayS1.length - 1); t >= (arrayS1.length-(arrayS1.length*0.1));t--) {
         //              449                  449-4=446      restadeauno
     
     tablaLast.innerHTML += `
@@ -98,8 +104,9 @@ $.ajax({
             </tr>
             `
         }
+    console.table(arrayS1.length-(arrayS1.length*0.1))
         var tablaMost = document.getElementById("aht2");
-        for (var t = 0; t < 4;t++) {
+        for (var t = 0; t < arrayS1.length*0.1;t++) {
             //              449                  449-4=446      restadeauno
         
         tablaMost.innerHTML += `
