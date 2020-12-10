@@ -5,16 +5,12 @@ var tablaHouse = new Vue({
         dataCongress:[], 
     },
     mounted(){
-        alert("hola")
-            fetch('https://api.propublica.org/congress/v1/113/senate/members.json',
+            fetch('https://api.propublica.org/congress/v1/113/house/members.json',
                      {     method: "GET",
                            headers: {"X-API-Key": "qxlSNNZZINKD5TepU2H40f10aW4aHBPGJ9TMWNYe"}
                         }).then(response => response.json())
                         .then(json => this.dataCongress = json.results[0].members)
-                        .then(json => console.log(json))
                         .catch(err => console.log(err))
-
-
         },
 })
 /*

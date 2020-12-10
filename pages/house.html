@@ -109,7 +109,15 @@
                   <th>Votes with party pct</th>
                 </tr>
               </thead>
-              <tbody id="tblHouse"></tbody>
+              <tbody>
+                <tr v-for="congressmen in dataCongress">
+                  <td><a v-bind:href="congressmen.url">{{congressmen.first_name}  }</a></td>
+                  <td>{{congressmen.party}}</td>
+                  <td>{{congressmen.state}}</td>
+                  <td>{{congressmen.seniority}}</td>
+                  <td>{{congressmen.votes_with_party_pct}}</td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
