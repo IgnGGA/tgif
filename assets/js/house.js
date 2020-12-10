@@ -1,24 +1,24 @@
 //TABLA_CONGRESS_113
-$.ajax({
-    type: "GET",
-    dataType: "text",
-    url: "../assets/json/house.json",
-}).done(function (house) {
-    var congress = JSON.parse(house);
-    var tabla = document.querySelector("#tblHouse");
-    for (var congressmen of congress.results[0].members) {
-        tabla.innerHTML += `
-            <tr>
-            <td><a href="${congressmen.url}">${congressmen.first_name} ${congressmen.middle_name} ${congressmen.last_name}</a></td>
-            <td>${congressmen.party}</td>
-            <td>${congressmen.state}</td>
-            <td>${congressmen.seniority}</td>
-            <td>${congressmen.votes_with_party_pct}</td>
-            </tr>
-            `
-    }
+var tablaHouse = new Vue({
+    el: '#cuadro2',
+    data: {
+        dataCongress:[], 
+    },
+    mounted(){
+        alert("hola")
+            fetch('https://api.propublica.org/congress/v1/113/senate/members.json',
+                     {     method: "GET",
+                           headers: {"X-API-Key": "qxlSNNZZINKD5TepU2H40f10aW4aHBPGJ9TMWNYe"}
+                        }).then(response => response.json())
+                        .then(json => this.dataCongress = json.results[0].members)
+                        .then(json => console.log(json))
+                        .catch(err => console.log(err))
+
+
+        },
 })
-//TABLA_HOUSE_AT_A_GLANCE;_ATTENDANCE_Y_PARTY_LOYALTY.
+/*
+1//TABLA_HOUSE_AT_A_GLANCE;_ATTENDANCE_Y_PARTY_LOYALTY.
 $.ajax({
     type: "GET",
     dataType: "text",
@@ -37,9 +37,9 @@ $.ajax({
     var contR = 0;
     var contD = 0;
     var contID = 0;
-    var promR=0;
-    var promD=0;
-    var promID=0;
+    var promR = 0;
+    var promD = 0;
+    var promID = 0;
 
     for (var miembro of congress.results[0].members) {
         if (miembro.party == "R") {
@@ -53,23 +53,24 @@ $.ajax({
             promID += miembro.votes_with_party_pct;
         }
     }
-    function verificar(a,b){
-        if(isNaN(a/b)==true){
-            return 0;}
-        else{
-        return (a/b).toFixed(2);
+    function verificar(a, b) {
+        if (isNaN(a / b) == true) {
+            return 0;
+        }
+        else {
+            return (a / b).toFixed(2);
+        }
     }
-}
-    promT=promR+promD+promID;
+    promT = promR + promD + promID;
     total = contR + contD + contID;
     t1f11.innerHTML = contR;
     t1f21.innerHTML = contD;
     t1f31.innerHTML = contID;
     t1f41.innerHTML = total;
-    t1f12.innerHTML = verificar(promR,contR)+"%";
-    t1f22.innerHTML = verificar(promD,contD)+"%";
-    t1f32.innerHTML = verificar(promID,contID)+"%";
-    t1f42.innerHTML = verificar(promT,total)+"%";
+    t1f12.innerHTML = verificar(promR, contR) + "%";
+    t1f22.innerHTML = verificar(promD, contD) + "%";
+    t1f32.innerHTML = verificar(promID, contID) + "%";
+    t1f42.innerHTML = verificar(promT, total) + "%";
 })
 //TABLAS_LAST_Y_MOST_ENGAGED
 $.ajax({
@@ -97,30 +98,30 @@ $.ajax({
 
     ordenarAsc(arrayS1, "porcentaje");
     console.log(arrayS1);
-    var min=(arrayS1.length-(arrayS1.length*0.1)-1).toFixed(0);//es un string
-    min1=parseInt(min);//en un entero
-        console.log(min1);
-    var max=(arrayS1.length-1).toFixed();
-        console.log(max);
+    var min = (arrayS1.length - (arrayS1.length * 0.1) - 1).toFixed(0);//es un string
+    min1 = parseInt(min);//en un entero
+    console.log(min1);
+    var max = (arrayS1.length - 1).toFixed();
+    console.log(max);
     var tablaLast = document.getElementById("ast1");
     var tablaLast = document.getElementById("aht1");
 
-    for (var t =min1; t <=max;t++) {
+    for (var t = min1; t <= max; t++) {
         //              449                  449-4=446      restadeauno
-    
-    tablaLast.innerHTML += `
+
+        tablaLast.innerHTML += `
             <tr>
             <td><a href="${arrayS1[t].url}">${arrayS1[t].nombre} </a></td>
             <td>${arrayS1[t].votos}</td>
             <td>${arrayS1[t].porcentaje} %</td>
             </tr>
             `
-        }
-    console.table(arrayS1.length-(arrayS1.length*0.1))
-        var tablaMost = document.getElementById("aht2");
-        for (var t = 0; t < arrayS1.length*0.1;t++) {
-            //              449                  449-4=446      restadeauno
-        
+    }
+    console.table(arrayS1.length - (arrayS1.length * 0.1))
+    var tablaMost = document.getElementById("aht2");
+    for (var t = 0; t < arrayS1.length * 0.1; t++) {
+        //              449                  449-4=446      restadeauno
+
         tablaMost.innerHTML += `
                 <tr>
                 <td><a href="${arrayS1[t].url}">${arrayS1[t].nombre} </a></td>
@@ -128,7 +129,7 @@ $.ajax({
                 <td>${arrayS1[t].porcentaje} %</td>
                 </tr>
                 `
-            }    
+    }
 })
 $.ajax({
     type: "GET",
@@ -137,7 +138,7 @@ $.ajax({
 }).done(function (tabla3) {
     var congress = JSON.parse(tabla3);
     var arrayA1 = [];
-    var i=0;
+    var i = 0;
     for (var miembro of congress.results[0].members) {
         arrayA1[i] = {
             porcentaje: miembro.votes_with_party_pct,
@@ -158,22 +159,22 @@ $.ajax({
     console.table(arrayA1);
 
     var tablaLast = document.getElementById("plht2");
-    for (var t = (arrayA1.length - 1); t >= (arrayA1.length-(arrayA1.length*0.1));t--) {
+    for (var t = (arrayA1.length - 1); t >= (arrayA1.length - (arrayA1.length * 0.1)); t--) {
         //              449                  449-4=446      restadeauno
-    var variable=(arrayA1[t].votos-arrayA1[t].votosM)*(arrayA1[t].porcentaje)/100;
-    tablaLast.innerHTML +=
-    `
+        var variable = (arrayA1[t].votos - arrayA1[t].votosM) * (arrayA1[t].porcentaje) / 100;
+        tablaLast.innerHTML +=
+            `
             <tr>
             <td><a href="${arrayA1[t].url}">${arrayA1[t].nombre} </a></td>
             <td>${variable.toFixed()}</td>
             <td>${arrayA1[t].porcentaje} %</td>
             </tr>
             `
-        }
-        var tablaMost = document.getElementById("plht1");
-        for (var t = 0; t < arrayA1.length*0.1;t++) {
-            //              449                  449-4=446      restadeauno
-        var variable=(arrayA1[t].votos-arrayA1[t].votosM)*(arrayA1[t].porcentaje)/100;
+    }
+    var tablaMost = document.getElementById("plht1");
+    for (var t = 0; t < arrayA1.length * 0.1; t++) {
+        //              449                  449-4=446      restadeauno
+        var variable = (arrayA1[t].votos - arrayA1[t].votosM) * (arrayA1[t].porcentaje) / 100;
         tablaMost.innerHTML += `
                 <tr>
                 <td><a href="${arrayA1[t].url}">${arrayA1[t].nombre} </a></td>
@@ -181,8 +182,9 @@ $.ajax({
                 <td>${arrayA1[t].porcentaje} %</td>
                 </tr>
                 `
-            }   
+    }
 })
-.fail(function (e) {
-    console.log(e);
-})
+    .fail(function (e) {
+        console.log(e);
+    })
+*/
