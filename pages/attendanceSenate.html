@@ -14,6 +14,7 @@
 </head>
 
 <body>
+  
   <div class="container" id="general">
     <div class="row">
       <div class="col-12" style="padding:0%;">
@@ -111,8 +112,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Republican{{funcion1}}</td>
+            <tr>{{funcion1}}
+              <td>Republican</td>
               <td >{{contR}}</td>
               <td >{{verificarR}}</td>
             </tr>
@@ -170,7 +171,11 @@
               </tr>
             </thead>
             <tbody id="ast2">
-
+              <tr v-for="miembro in array3">
+                <td><a :href="miembro.url">{{miembro.first_name}}</a></td>
+                <td>{{miembro.missed_votes}}</td>
+                <td>{{miembro.missed_votes_pct}}</td>
+              </tr>
             </tbody>
           </table>
         </div>

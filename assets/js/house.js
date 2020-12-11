@@ -17,6 +17,7 @@ var tablaHouse = new Vue({
         ID:0,
         T:0,
         array2:[],
+        array3:[],
        
         nombre:[],
     },
@@ -38,7 +39,6 @@ var tablaHouse = new Vue({
     },
     computed:{
         funcion1() {
-            
             arreglo = this.dataSenate
             for (miembro of arreglo) {
                 if (miembro.party == "R") {
@@ -60,8 +60,14 @@ var tablaHouse = new Vue({
                 this.array2.sort(function (a, b) {
                     return a.missed_votes_pct - b.missed_votes_pct;
                 })
-               this.array2 = this.array2.reverse().slice(0,15) 
-                },
+               this.array2 = this.array2.reverse().slice(0,(this.array2.length * 0.10).toFixed(0)) 
+               //----------------------------------------------------
+               this.array3 = this.dataSenate
+                this.array3.sort(function (a, b) {
+                    return a.missed_votes_pct - b.missed_votes_pct;
+                })
+                this.array3 = this.array3.slice(0,(this.array3.length * 0.10).toFixed(0))
+            },
     verificarR() {
         if (isNaN(this.promR / this.contR) == true) {
             return this.R = 0;
