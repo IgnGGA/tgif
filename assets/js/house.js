@@ -1,17 +1,98 @@
 //TABLA_CONGRESS_113
 var tablaHouse = new Vue({
-    el: '#cuadro2',
+    el: '#general',
     data: {
-        dataCongress:[], 
+        dataCongress: [],
+        dataSenate: [],
+        contR:0,
+        promR:0,
+        contD:0,
+        contID:0,
+        promD:0,
+        promID:0,
+        total:0,
+        promT:0,
+        R:0,
+        D:0,
+        ID:0,
+        T:0,
+        array2:[],
+       
+        nombre:[],
     },
-    mounted(){
-            fetch('https://api.propublica.org/congress/v1/113/house/members.json',
-                     {     method: "GET",
-                           headers: {"X-API-Key": "qxlSNNZZINKD5TepU2H40f10aW4aHBPGJ9TMWNYe"}
-                        }).then(response => response.json())
-                        .then(json => this.dataCongress = json.results[0].members)
-                        .catch(err => console.log(err))
-        },
+    mounted() {
+        fetch('https://api.propublica.org/congress/v1/113/house/members.json',
+            {
+                method: "GET",
+                headers: { "X-API-Key": "qxlSNNZZINKD5TepU2H40f10aW4aHBPGJ9TMWNYe" }
+            }).then(response => response.json())
+            .then(json => this.dataCongress = json.results[0].members)
+            .catch(err => console.log(err)),
+        fetch('https://api.propublica.org/congress/v1/113/senate/members.json',
+            {
+                method: "GET",
+                headers: { "X-API-Key": "qxlSNNZZINKD5TepU2H40f10aW4aHBPGJ9TMWNYe" }
+            }).then(response => response.json())
+            .then(json => this.dataSenate = json.results[0].members)
+            .catch(err => console.log(err))      
+    },
+    computed:{
+        funcion1() {
+            
+            arreglo = this.dataSenate
+            for (miembro of arreglo) {
+                if (miembro.party == "R") {
+                    
+                    this.contR += 1;
+                    this.promR += miembro.votes_with_party_pct;
+                }  else if (miembro.party == "D") {
+                    this.contD += 1;
+                    this.promD += miembro.votes_with_party_pct;
+                } else if (miembro.party == "ID") {
+                    this.contID += 1;
+                    this.promID += miembro.votes_with_party_pct;
+                }
+            } 
+            this.total = this.contR + this.contD + this.contID
+            this.promT = this.promR + this.promID + this.promD
+            //---------------------------------------------------
+                this.array2 = this.dataSenate
+                this.array2.sort(function (a, b) {
+                    return a.missed_votes_pct - b.missed_votes_pct;
+                })
+               this.array2 = this.array2.reverse().slice(0,15) 
+                },
+    verificarR() {
+        if (isNaN(this.promR / this.contR) == true) {
+            return this.R = 0;
+        }
+        else {
+            return this.R = (this.promR/ this.contR).toFixed(2);
+        }
+    },
+    verificarD() {
+        if (isNaN(this.promD / this.contD) == true) {
+            return this.D = 0;
+        }
+        else {
+            return this.D = (this.promD/ this.contD).toFixed(2);
+        }
+    },verificarID() {
+        if (isNaN(this.promID / this.contID) == true) {
+            return this.ID = 0;
+        }
+        else {
+            return this.ID = (this.promID / this.contID).toFixed(2);
+        }
+    },verificarTotal() {
+        if (isNaN(this.promT / this.total) == true) {
+            return this.T = 0;
+        }
+        else {
+            return this.T = (this.promT/ this.total).toFixed(2);
+        }
+    }
+    }
 })
 /*
 1//TABLA_HOUSE_AT_A_GLANCE;_ATTENDANCE_Y_PARTY_LOYALTY.

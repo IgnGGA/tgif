@@ -13,8 +13,8 @@
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
-<body>
-  <div class="container">
+<body >
+  <div class="container" id="general">
     <div class="row">
       <div class="col-12" style="padding:0%;">
         <nav class="navbar navbar-light">
@@ -111,7 +111,7 @@
               </thead>
               <tbody>
                 <tr v-for="congressmen in dataCongress">
-                  <td><a v-bind:href="congressmen.url">{{congressmen.first_name}  }</a></td>
+                  <td><a v-bind:href=congressmen.url>{{congressmen.first_name}}</a></td>
                   <td>{{congressmen.party}}</td>
                   <td>{{congressmen.state}}</td>
                   <td>{{congressmen.seniority}}</td>
