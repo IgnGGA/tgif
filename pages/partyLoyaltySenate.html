@@ -14,7 +14,7 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="container" id="general">
     <div class="row">
       <div class="col-12" style="padding:0%;">
         <nav class="navbar navbar-light">
@@ -105,25 +105,25 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr>{{funcion1}}
               <td>Republican</td>
-              <td id="rast1n"></td>
-              <td id="rast1v"></td>
+              <td >{{contR}}</td>
+              <td >{{verificarR}} %</td>
             </tr>
             <tr>
               <td>Democrat</td>
-              <td id="dast1n"></td>
-              <td id="dast1v"></td>
+              <td >{{contD}}</td>
+              <td >{{verificarD}} %</td>
             </tr>
             <tr>
               <td>Independant</td>
-              <td id="iast1n"></td>
-              <td id="iast1v"></td>
+              <td >{{contID}}</td>
+              <td >{{verificarID}} %</td>
             </tr>
             <tr>
               <td>Total</td>
-              <td id="tast1n"></td>
-              <td id="tast1v"></td>
+              <td >{{total}}</td>
+              <td >{{verificarTotal}} %</td>
             </tr>
           </tbody>
         </table>
@@ -141,7 +141,13 @@
                 <th>% Party Votes</th>
               </tr>
             </thead>
-            <tbody id="plst1"></tbody>
+            <tbody >
+              <tr v-for="miembro in array3">
+                <td><a :href="miembro.url">{{miembro.first_name}}</a></td>
+                <td>{{miembro.celda2}}</td>
+                <td>{{miembro.votes_with_party_pct}} %</td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
@@ -157,7 +163,13 @@
                 <th>% Party Votes</th>
               </tr>
             </thead>
-            <tbody id="plst2"></tbody>
+            <tbody>
+              <tr v-for="miembro in array2">
+                <td><a :href="miembro.url">{{miembro.first_name}}</a></td>
+                <td>{{miembro.celda2}}</td>
+                <td>{{miembro.votes_with_party_pct}} %</td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
@@ -167,8 +179,8 @@
         <p class="card-text"> © 2020 | All Rights Reserved</p>
       </div>
     </div>
-  </div>
-  <script src="../assets/js/main.js"></script>></script>
+  </div> 
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
   <script src="../assets/js/senate.js"></script>
 </body>
 
