@@ -1,4 +1,4 @@
-//TABLA_CONGRESS_113
+/*//TABLA_CONGRESS_113
 $.ajax({
     type: "GET",
     dataType: "text",
@@ -185,4 +185,4 @@ $.ajax({
 })
 .fail(function (e) {
     console.log(e);
-})
+})*/
